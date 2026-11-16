@@ -18,6 +18,10 @@ import AgentStudio from "./overlays/AgentStudio";
 import NewRecordDialog from "./overlays/NewRecordDialog";
 import CommandPalette from "./overlays/CommandPalette";
 import BackgroundGallery from "./overlays/BackgroundGallery";
+import ModuleHost from "./modules/ModuleHost";
+import RecordDrawer from "./modules/RecordDrawer";
+import RecordsExplorer from "./modules/RecordsExplorer";
+import Toast from "./modules/Toast";
 
 type Props = { v: any };
 
@@ -32,14 +36,14 @@ export default function AppShell({ v }: Props) {
         <span style={css(v.railThumbStyle)} />
         <div style={css(cat(v.railRowStyle, "margin-bottom:22px"))}>
           <button className={cx("ix0", "ix1")} onClick={v.toggleRail} title={v.railLabel} style={{"width":"36px","height":"36px","flex":"none","border":"0","borderRadius":"var(--cta-r,11px)","background":"var(--accent-fill,var(--accent))","color":"var(--on-accent)","boxShadow":"var(--accent-glow,none)","cursor":"pointer","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"13px","fontWeight":"600","padding":"0","transition":"transform .2s var(--ease)"}}>
-            {"K"}
+            {"CC"}
           </button>
           <span style={css(v.brandStyle)}>
             <span style={{"display":"block","fontSize":"15px","fontWeight":"600","letterSpacing":"-.3px","color":"var(--ink)"}}>
-              {"Kilbride Group"}
+              {"Colm Curran"}
             </span>
             <span style={{"display":"block","marginTop":"2px","fontSize":"9px","fontWeight":"500","letterSpacing":".16em","color":"var(--accent)"}}>
-              {"PULSE · OPERATIONS"}
+              {"ROOFING & BUILDING"}
             </span>
           </span>
           {v.railOpen && (
@@ -54,6 +58,14 @@ export default function AppShell({ v }: Props) {
         </div>
         {arr(v.nav).map((item: any, i0: number) => (
           <Fragment key={i0}>
+            {item?.isGroup && v.railOpen && (
+              <div style={{"width":"100%","padding":item?.first ? "0 14px 6px" : "14px 14px 6px","fontFamily":"var(--mono)","fontSize":"9px","letterSpacing":".16em","color":"var(--faint)"}}>
+                {item?.label}
+              </div>
+            )}
+            {item?.isGroup && !v.railOpen && !item?.first && (
+              <div style={{"width":"20px","height":"1px","background":"var(--track)","margin":"7px 0"}} />
+            )}
             {item?.isDivider && (
               <>
                 <div style={{"width":"20px","height":"1px","background":"var(--track)","margin":"7px 0"}} />
@@ -96,14 +108,14 @@ export default function AppShell({ v }: Props) {
               </div>
               <div style={{"display":"flex","alignItems":"center","gap":"11px","marginTop":"12px"}}>
                 <div style={{"width":"40px","height":"40px","flex":"none","borderRadius":"999px","background":"var(--accent-soft)","color":"var(--accent)","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"13px","fontWeight":"600"}}>
-                  {"MK"}
+                  {"CC"}
                 </div>
                 <div style={{"minWidth":"0"}}>
                   <div style={{"fontSize":"17px","fontWeight":"600","letterSpacing":"-.3px","color":"var(--ink)","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
-                    {"Martin Kilbride"}
+                    {"Colm Curran"}
                   </div>
                   <div style={{"fontSize":"12.5px","color":"var(--faint)","marginTop":"2px","whiteSpace":"nowrap","overflow":"hidden","textOverflow":"ellipsis"}}>
-                    {"Kilbride Group · Owner"}
+                    {"Managing Director"}
                   </div>
                 </div>
               </div>
@@ -143,14 +155,14 @@ export default function AppShell({ v }: Props) {
             </button>
             <div style={css(cat(v.railRowStyle, "margin-top:10px;padding:12px 10px;border-top:1px solid var(--border)"))}>
               <div style={{"width":"40px","height":"40px","flex":"none","borderRadius":"12px","background":"var(--surface-2)","border":"1px solid var(--border)","color":"var(--body)","display":"flex","alignItems":"center","justifyContent":"center","fontSize":"12px","fontWeight":"600","cursor":"pointer"}}>
-                {"MK"}
+                {"CC"}
               </div>
               <span style={css(v.brandStyle)}>
                 <span style={{"display":"block","fontSize":"14px","fontWeight":"500","color":"var(--ink)"}}>
-                  {"Martin Kilbride"}
+                  {"Colm Curran"}
                 </span>
                 <span style={{"display":"block","marginTop":"2px","fontSize":"12px","color":"var(--faint)"}}>
-                  {"Kilbride Group · Owner"}
+                  {"Managing Director"}
                 </span>
               </span>
             </div>
@@ -287,6 +299,12 @@ export default function AppShell({ v }: Props) {
                       </button>
                     </>
                   )}
+                  <span title={v.demoClockTitle} style={{"display":"flex","alignItems":"center","gap":"7px","height":"30px","padding":"0 5px 0 10px","margin":"0 4px","borderRadius":"999px","border":"1px dashed var(--border-strong)","fontFamily":"var(--mono)","fontSize":"10.5px","letterSpacing":".04em","color":"var(--dim)","whiteSpace":"nowrap","flex":"none"}}>
+                    {txt(v.demoClock)}
+                    <button type="button" onClick={v.resetDemo} title="Reset the demo to 07:20" className="cc-btn" style={{"height":"22px","padding":"0 9px","border":"1px solid var(--border)","borderRadius":"999px","background":"var(--surface-2)","color":"var(--body)","fontSize":"10.5px","cursor":"pointer","fontFamily":"var(--ui)","letterSpacing":"0"}}>
+                      {"Reset"}
+                    </button>
+                  </span>
                   <button className="ix2" onClick={v.toggleNotifs} style={{"position":"relative","width":"42px","height":"42px","border":"0","borderRadius":"999px","background":"none","cursor":"pointer","color":"var(--dim)","display":"flex","alignItems":"center","justifyContent":"center","transition":"background .2s var(--ease),color .2s var(--ease)"}}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M6 8.5a6 6 0 0 1 12 0c0 6.5 2.6 8.5 2.6 8.5H3.4S6 15 6 8.5Z M10.3 20.5a1.94 1.94 0 0 0 3.4 0" />
@@ -311,7 +329,7 @@ export default function AppShell({ v }: Props) {
                         <>
                           <div style={{"minWidth":"0"}}>
                             <div style={{"fontSize":"12px","fontWeight":"500","lineHeight":"1.2","whiteSpace":"nowrap"}}>
-                              {"Martin Kilbride"}
+                              {"Colm Curran"}
                             </div>
                             <div style={{"fontSize":"10.5px","color":"var(--faint)","lineHeight":"1.2"}}>
                               {"Owner"}
@@ -391,6 +409,8 @@ export default function AppShell({ v }: Props) {
           {v.isChat && <Home v={v} />}
           {v.isWork && <Work v={v} />}
           {v.isRecords && <Records v={v} />}
+          {v.isModule && <ModuleHost page={v.page} />}
+          {v.rec?.isExplorer && <RecordsExplorer />}
           {v.rec?.isContacts && (
             <>
               <div style={{"display":"flex","flexDirection":"column","gap":"14px"}}>
@@ -577,7 +597,8 @@ export default function AppShell({ v }: Props) {
           )}
           {v.isSettings && <Settings v={v} />}
           {v.isDashboard && <Dashboard v={v} />}
-          {v.isAgents && <Agents v={v} />}
+          {v.agentsDetail && <Agents v={v} />}
+          {v.isAgents && !v.agentsDetail && <ModuleHost page="Agents" />}
         </div>
       </main>
       {v.showFab && (
@@ -719,7 +740,7 @@ export default function AppShell({ v }: Props) {
                     </Fragment>
                   ))}
                 </div>
-                <button className="ix10" style={{"width":"100%","height":"38px","marginTop":"14px","background":"none","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,13px)","fontSize":"12.5px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
+                <button className="ix10" onClick={v.openAuditFromDetail} style={{"width":"100%","height":"38px","marginTop":"14px","background":"none","border":"1px solid var(--border)","borderRadius":"var(--r-ctl,13px)","fontSize":"12.5px","color":"var(--body)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease)"}}>
                   {"Full audit log"}
                 </button>
               </div>
@@ -820,6 +841,8 @@ export default function AppShell({ v }: Props) {
       {v.newRec?.open && <NewRecordDialog v={v} />}
       {v.paletteOpen && <CommandPalette v={v} />}
       {v.bgGallery?.open && <BackgroundGallery v={v} />}
+      <RecordDrawer />
+      <Toast />
     </div>
     </>
   );

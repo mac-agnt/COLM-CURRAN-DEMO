@@ -7,36 +7,12 @@ export default function Dashboard({ v }: Props) {
   return (
     <>
       <div style={{"width":"100%","maxWidth":"1280px","margin":"0 auto","boxSizing":"border-box","padding":"22px 32px 40px","animation":"pageIn .7s var(--ease) both"}}>
-        <div style={{"display":"flex","alignItems":"center","gap":"10px","padding":"18px 4px 16px"}}>
-          <div style={css(v.aspectTrack)}>
-            <span style={css(v.aspectThumb)} />
-            {arr(v.aspects).map((a: any, i90: number) => (
-              <Fragment key={i90}>
-                {a?.active && (
-                  <>
-                    <button onClick={a?.pick} style={{"position":"relative","zIndex":"1","display":"flex","alignItems":"center","justifyContent":"center","gap":"8px","height":"32px","padding":"0 15px","border":"0","borderRadius":"var(--r-ctl,11px)","cursor":"pointer","fontSize":"12.5px","fontWeight":"600","whiteSpace":"nowrap","background":"none","color":"var(--pill-ink)","transition":"color .3s var(--ease)"}}>
-                      <span style={css(cat("width:7px;height:7px;border-radius:2px;background:", a?.color))} />
-                      {txt(a?.label)}
-                    </button>
-                  </>
-                )}
-                {a?.inactive && (
-                  <>
-                    <button className="ix3" onClick={a?.pick} style={{"position":"relative","zIndex":"1","display":"flex","alignItems":"center","justifyContent":"center","gap":"8px","height":"32px","padding":"0 15px","border":"0","borderRadius":"var(--r-ctl,11px)","cursor":"pointer","fontSize":"12.5px","whiteSpace":"nowrap","background":"none","color":"var(--dim)","transition":"color .3s var(--ease)"}}>
-                      <span style={{"width":"7px","height":"7px","borderRadius":"2px","background":"var(--track)"}} />
-                      {txt(a?.label)}
-                    </button>
-                  </>
-                )}
-              </Fragment>
-            ))}
-          </div>
-          <button className="ixe" onClick={v.toggleFilterMenu} style={{"flex":"none","height":"42px","display":"flex","alignItems":"center","gap":"7px","padding":"0 16px","background":"var(--surface)","border":"1px dashed var(--border-strong)","borderRadius":"999px","fontSize":"12.5px","color":"var(--dim)","cursor":"pointer","transition":"border-color .2s var(--ease),color .2s var(--ease),transform .18s var(--ease)"}}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M12 5v14 M5 12h14" />
-            </svg>
-            {"Add filter"}
-          </button>
+        <div style={{"display":"flex","alignItems":"center","gap":"10px","flexWrap":"wrap","padding":"18px 4px 16px"}}>
+          <span style={{"display":"inline-flex","alignItems":"center","gap":"7px","height":"28px","padding":"0 11px","borderRadius":"999px","border":"1px dashed var(--border-strong)","fontSize":"11.5px","color":"var(--dim)"}}>
+            <span style={{"width":"5px","height":"5px","borderRadius":"2px","background":"var(--accent)"}} />
+            {"Illustrative demo data, derived from the same records as every other screen"}
+          </span>
+          <span style={{"fontSize":"12px","color":"var(--faint)"}}>{"Switch views in the top bar: Executive, Delivery, Labour, Commercial."}</span>
         </div>
         {v.filterMenuOpen && (
           <>

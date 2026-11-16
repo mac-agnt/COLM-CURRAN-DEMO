@@ -1,0 +1,55 @@
+/* Layout helpers for the Colm Curran modules. Colours come from the Pulse theme tokens. */
+.cc-page{width:100%;max-width:1480px;margin:0 auto;box-sizing:border-box;padding:20px 26px 72px;display:flex;flex-direction:column;gap:14px;animation:pageIn .55s var(--ease) both}
+.cc-grid{display:grid;gap:14px;min-width:0}
+.cc-c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cc-c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cc-c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cc-c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.cc-c6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.cc-split{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+.cc-split-even{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.cc-split-r{grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)}
+.cc-split-narrow{grid-template-columns:minmax(300px,380px) minmax(0,1fr)}
+.cc-stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+.cc-scroll-x{overflow-x:auto;scrollbar-width:thin}
+.cc-row{transition:background .18s var(--ease)}
+.cc-row.cc-click{cursor:pointer}
+.cc-row.cc-click:hover{background:var(--surface-2)}
+.cc-row.cc-sel{background:var(--accent-faint);box-shadow:inset 2px 0 0 var(--accent)}
+.cc-btn{transition:background .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease),transform .16s var(--ease)}
+.cc-btn:not(:disabled):hover{border-color:var(--border-strong);color:var(--ink)}
+.cc-btn:not(:disabled):active{transform:translateY(1px) scale(.985)}
+.cc-btn.cc-primary:not(:disabled):hover{filter:brightness(1.06)}
+.cc-btn:disabled{opacity:.45;cursor:not-allowed}
+.cc-chip{transition:border-color .18s var(--ease),color .18s var(--ease),background .18s var(--ease)}
+.cc-chip:hover{border-color:var(--accent-line);color:var(--ink);background:var(--accent-faint)}
+.cc-card-click{cursor:pointer;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.cc-card-click:hover{border-color:var(--border-strong)}
+.cc-input{width:100%;box-sizing:border-box;height:36px;padding:0 12px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm,10px);outline:0;font-size:13px;color:var(--ink);transition:border-color .18s var(--ease)}
+.cc-input:focus{border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-faint)}
+textarea.cc-input{height:auto;padding:10px 12px;line-height:1.55;resize:vertical}
+select.cc-input{appearance:none;cursor:pointer}
+.cc-kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.cc-phone{width:330px;max-width:100%;flex:none}
+.cc-hide-narrow{}
+@media (max-width:1280px){
+  .cc-c6{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cc-c5{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:1100px){
+  .cc-c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cc-c3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cc-split,.cc-split-r,.cc-split-even,.cc-split-narrow{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  .cc-page{padding:14px 12px 72px}
+  .cc-c2,.cc-c3,.cc-c4{grid-template-columns:minmax(0,1fr)}
+  .cc-c5,.cc-c6{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cc-hide-narrow{display:none !important}
+}
+@keyframes ccToast{0%{opacity:0;transform:translate(-50%,10px) scale(.98)}100%{opacity:1;transform:translate(-50%,0)}}
+@keyframes ccDrawer{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@media (max-width:1000px){
+  .cc-home{flex-direction:column;overflow-y:auto;height:auto !important;min-height:100%}
+  .cc-home .cc-home-rail{width:100% !important;padding:8px 0 6px !important;overflow:visible !important}
+}

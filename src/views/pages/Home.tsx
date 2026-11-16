@@ -8,7 +8,7 @@ type Props = { v: any };
 export default function Home({ v }: Props) {
   return (
     <>
-      <div style={{"position":"relative","display":"flex","gap":"20px","height":"100%","padding":"0 22px 22px"}}>
+      <div className="cc-home" style={{"position":"relative","display":"flex","gap":"20px","height":"100%","padding":"0 22px 22px"}}>
         <div style={css(v.homeCanvasStyle)} />
         <div style={css(v.chatColumnStyle)}>
           {v.heliosEmpty && (
@@ -86,6 +86,17 @@ export default function Home({ v }: Props) {
                   </>
                 )}
               </div>
+            </div>
+          </div>
+          <div style={css(v.composerWidthStyle)}>
+            <div style={{"display":"flex","flexWrap":"wrap","gap":"6px","justifyContent":"center","paddingTop":"12px"}}>
+              {arr(v.suggestions).map((q: any, iq: number) => (
+                <Fragment key={iq}>
+                  <button type="button" className="cc-chip" onClick={q?.run} style={{"height":"30px","padding":"0 13px","border":"1px solid var(--border)","borderRadius":"999px","background":"var(--surface)","backdropFilter":"blur(16px)","color":"var(--body)","fontSize":"12.5px","cursor":"pointer","whiteSpace":"nowrap"}}>
+                    {txt(q?.label)}
+                  </button>
+                </Fragment>
+              ))}
             </div>
           </div>
           {v.heliosEmpty && (

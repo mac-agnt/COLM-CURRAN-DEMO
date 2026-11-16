@@ -140,6 +140,20 @@ export default function HomeThread({ v }: Props) {
                           </div>
                         </>
                       )}
+                      {m?.hasChips && (
+                        <>
+                          <div style={{"display":"flex","flexWrap":"wrap","gap":"6px","marginTop":"14px"}}>
+                            {arr(m?.chips).map((c: any, ic: number) => (
+                              <Fragment key={ic}>
+                                <button type="button" className="cc-chip" onClick={c?.open} style={{"height":"26px","padding":"0 10px","border":"1px solid var(--border)","borderRadius":"var(--chip-r,8px)","background":"var(--surface-2)","color":"var(--body)","fontSize":"11.5px","cursor":"pointer","whiteSpace":"nowrap","display":"inline-flex","alignItems":"center","gap":"6px"}}>
+                                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{"opacity":".7"}}><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1 M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1" /></svg>
+                                  {txt(c?.label)}
+                                </button>
+                              </Fragment>
+                            ))}
+                          </div>
+                        </>
+                      )}
                       {m?.hasConfirm && (
                         <>
                           <div style={{"marginTop":"16px","padding":"16px 18px","background":"var(--accent-faint)","border":"1px solid var(--accent-line)","borderRadius":"var(--card-r,18px)"}}>

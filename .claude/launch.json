@@ -7,6 +7,20 @@
       "runtimeArgs": ["run", "dev", "--", "--port", "5176", "--strictPort"],
       "port": 5176,
       "autoPort": false
+    },
+    {
+      "name": "colm-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "5231", "--strictPort"],
+      "port": 5231,
+      "autoPort": false
+    },
+    {
+      "name": "colm-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "5232", "--strictPort"],
+      "port": 5232,
+      "autoPort": false
     }
   ]
 }
